@@ -1,9 +1,13 @@
 import { Icon } from "@iconify/react";
+import { useGetAdminEvents } from "../../api/queries";
 import AdminEntityGrid from "../../components/admin/AdminEntityGrid";
 import AdminEventCard from "../../components/admin/AdminEventCard";
-import { adminEventFixtures } from "../../fixtures/adminEntityFixtures";
+import Loader from "../../components/Loader";
 
 const AdminHome = () => {
+  const { data, isLoading, isError } = useGetAdminEvents();
+  const events = data?.events ?? [];
+
   return (
     <div className="w-full max-w-7xl min-h-dvh px-6 md:px-11 mx-auto flex flex-col items-center justify-start">
       <div className="w-full flex flex-row items-center gap-5">
@@ -14,11 +18,21 @@ const AdminHome = () => {
         </button>
       </div>
 
-      <AdminEntityGrid>
-        {adminEventFixtures.map((event) => (
-          <AdminEventCard key={event.id} event={event} />
-        ))}
-      </AdminEntityGrid>
+      {isLoading && <Loader />}
+
+      {isError && (
+        <p className="w-full mt-6 text-sm text-thread-red font-medium">
+          We could not load events. Please try again later.
+        </p>
+      )}
+
+      {!isLoading && !isError && (
+        <AdminEntityGrid>
+          {events.map((event) => (
+            <AdminEventCard key={event.id} event={event} />
+          ))}
+        </AdminEntityGrid>
+      )}
     </div>
   );
 };

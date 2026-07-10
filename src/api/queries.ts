@@ -90,6 +90,20 @@ export const useGetPastEvents = (): UseQueryResult<QueryTypes.PastEventsResponse
   });
 }
 
+// admin events endpoint request
+async function getAdminEvents(): Promise<QueryTypes.AdminEventsResponse> {
+  return apiGet<QueryTypes.AdminEventsResponse, QueryTypes.AdminEventsError>({ endpoint: API_ROUTES.adminEvents });
+}
+
+// admin events endpoint hook - only fetches when enabled (e.g. authenticated admin session)
+export const useGetAdminEvents = (enabled: boolean = true): UseQueryResult<QueryTypes.AdminEventsResponse, QueryTypes.AdminEventsError> => {
+  return useQuery<QueryTypes.AdminEventsResponse, QueryTypes.AdminEventsError>({
+    queryKey: ["adminEvents"],
+    queryFn: () => getAdminEvents(),
+    enabled,
+  });
+};
+
 // event details request
 async function getEventDetails(eventId: string): Promise<QueryTypes.EventDetailsResponse> {
   return apiGet<QueryTypes.EventDetailsResponse, QueryTypes.EventDetailsError>({ endpoint: getEventDetailsAPIRoute(eventId) });

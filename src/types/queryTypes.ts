@@ -78,6 +78,17 @@ export type PastEventsError = {
   error: string;
 };
 
+// Admin events endpoint successful response
+export type AdminEventsResponse = {
+  events: Event[];
+};
+
+// Admin events endpoint error response
+export type AdminEventsError = {
+  status: number;
+  error: string;
+};
+
 // Event details endpoint successful response
 export type EventDetailsResponse = Event;
 

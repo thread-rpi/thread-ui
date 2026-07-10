@@ -1,36 +1,5 @@
-import type { Event } from "../types/eventTypes";
 import type { Image } from "../types/imageTypes";
 import type { Member } from "../types/memberTypes";
-
-export const adminEventFixtures: Pick<Event, "id" | "title" | "date" | "type" | "location" | "published" | "image_path">[] = [
-  {
-    id: "event-1",
-    title: "Fall Editorial Shoot",
-    date: "2025-09-12",
-    type: "shoot",
-    location: "Studio A",
-    published: true,
-    image_path: "2025/9/27/freeShoot/13/",
-  },
-  {
-    id: "event-2",
-    title: "Member Orientation",
-    date: "2025-08-28",
-    type: "internal",
-    location: "Main Hall",
-    published: false,
-    image_path: "2025/9/27/freeShoot/6/",
-  },
-  {
-    id: "event-3",
-    title: "NYC Fashion Week Coverage",
-    date: "2025-10-03",
-    type: "external",
-    location: "New York, NY",
-    published: true,
-    image_path: "2025/9/27/freeShoot/9/",
-  },
-];
 
 export const adminMemberFixtures: Pick<Member, "id" | "name" | "display_name" | "role" | "email" | "start_year" | "active" | "visible">[] = [
   {

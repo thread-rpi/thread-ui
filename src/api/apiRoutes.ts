@@ -5,6 +5,7 @@ export const API_ROUTES = {
   refreshToken: 'auth/refresh',
   adminUser: 'auth/me',
   pastEvents: 'events/past',
+  adminEvents: 'admin/events',
   eventDetails: 'events/{eventId}',
   memberDetails: 'members/{memberId}',
   imageDetails: 'images/{imageId}',
