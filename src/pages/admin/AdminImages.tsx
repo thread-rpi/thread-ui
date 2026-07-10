@@ -1,9 +1,13 @@
 import { Icon } from "@iconify/react";
+import { useGetAdminImages } from "../../api/queries";
 import AdminEntityGrid from "../../components/admin/AdminEntityGrid";
 import AdminImageCard from "../../components/admin/AdminImageCard";
-import { adminImageFixtures } from "../../fixtures/adminEntityFixtures";
+import Loader from "../../components/Loader";
 
 const AdminImages = () => {
+  const { data, isLoading, isError } = useGetAdminImages();
+  const images = data?.images ?? [];
+
   return (
     <div className="w-full max-w-7xl min-h-dvh px-6 md:px-11 mx-auto flex flex-col items-center justify-start">
       <div className="w-full flex flex-row items-center gap-5">
@@ -14,11 +18,21 @@ const AdminImages = () => {
         </button>
       </div>
 
-      <AdminEntityGrid>
-        {adminImageFixtures.map((image) => (
-          <AdminImageCard key={image.id} image={image} />
-        ))}
-      </AdminEntityGrid>
+      {isLoading && <Loader />}
+
+      {isError && (
+        <p className="w-full mt-6 text-sm text-thread-red font-medium">
+          We could not load images. Please try again later.
+        </p>
+      )}
+
+      {!isLoading && !isError && (
+        <AdminEntityGrid>
+          {images.map((image) => (
+            <AdminImageCard key={image.id} image={image} />
+          ))}
+        </AdminEntityGrid>
+      )}
     </div>
   );
 };

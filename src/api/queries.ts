@@ -118,6 +118,20 @@ export const useGetAdminMembers = (enabled: boolean = true): UseQueryResult<Quer
   });
 };
 
+// admin images endpoint request
+async function getAdminImages(): Promise<QueryTypes.AdminImagesResponse> {
+  return apiGet<QueryTypes.AdminImagesResponse, QueryTypes.AdminImagesError>({ endpoint: API_ROUTES.adminImages });
+}
+
+// admin images endpoint hook - only fetches when enabled (e.g. authenticated admin session)
+export const useGetAdminImages = (enabled: boolean = true): UseQueryResult<QueryTypes.AdminImagesResponse, QueryTypes.AdminImagesError> => {
+  return useQuery<QueryTypes.AdminImagesResponse, QueryTypes.AdminImagesError>({
+    queryKey: ["adminImages"],
+    queryFn: () => getAdminImages(),
+    enabled,
+  });
+};
+
 // event details request
 async function getEventDetails(eventId: string): Promise<QueryTypes.EventDetailsResponse> {
   return apiGet<QueryTypes.EventDetailsResponse, QueryTypes.EventDetailsError>({ endpoint: getEventDetailsAPIRoute(eventId) });
