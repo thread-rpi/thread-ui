@@ -1,9 +1,13 @@
 import { Icon } from "@iconify/react";
+import { useGetAdminMembers } from "../../api/queries";
 import AdminEntityGrid from "../../components/admin/AdminEntityGrid";
 import AdminMemberCard from "../../components/admin/AdminMemberCard";
-import { adminMemberFixtures } from "../../fixtures/adminEntityFixtures";
+import Loader from "../../components/Loader";
 
 const AdminMembers = () => {
+  const { data, isLoading, isError } = useGetAdminMembers();
+  const members = data?.members ?? [];
+
   return (
     <div className="w-full max-w-7xl min-h-dvh px-6 md:px-11 mx-auto flex flex-col items-center justify-start">
       <div className="w-full flex flex-row items-center gap-5">
@@ -14,11 +18,21 @@ const AdminMembers = () => {
         </button>
       </div>
 
-      <AdminEntityGrid>
-        {adminMemberFixtures.map((member) => (
-          <AdminMemberCard key={member.id} member={member} />
-        ))}
-      </AdminEntityGrid>
+      {isLoading && <Loader />}
+
+      {isError && (
+        <p className="w-full mt-6 text-sm text-thread-red font-medium">
+          We could not load members. Please try again later.
+        </p>
+      )}
+
+      {!isLoading && !isError && (
+        <AdminEntityGrid>
+          {members.map((member) => (
+            <AdminMemberCard key={member.id} member={member} />
+          ))}
+        </AdminEntityGrid>
+      )}
     </div>
   );
 };

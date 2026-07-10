@@ -6,6 +6,7 @@ export const API_ROUTES = {
   adminUser: 'auth/me',
   pastEvents: 'events/past',
   adminEvents: 'admin/events',
+  adminMembers: 'admin/members',
   eventDetails: 'events/{eventId}',
   memberDetails: 'members/{memberId}',
   imageDetails: 'images/{imageId}',

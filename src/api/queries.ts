@@ -104,6 +104,20 @@ export const useGetAdminEvents = (enabled: boolean = true): UseQueryResult<Query
   });
 };
 
+// admin members endpoint request
+async function getAdminMembers(): Promise<QueryTypes.AdminMembersResponse> {
+  return apiGet<QueryTypes.AdminMembersResponse, QueryTypes.AdminMembersError>({ endpoint: API_ROUTES.adminMembers });
+}
+
+// admin members endpoint hook - only fetches when enabled (e.g. authenticated admin session)
+export const useGetAdminMembers = (enabled: boolean = true): UseQueryResult<QueryTypes.AdminMembersResponse, QueryTypes.AdminMembersError> => {
+  return useQuery<QueryTypes.AdminMembersResponse, QueryTypes.AdminMembersError>({
+    queryKey: ["adminMembers"],
+    queryFn: () => getAdminMembers(),
+    enabled,
+  });
+};
+
 // event details request
 async function getEventDetails(eventId: string): Promise<QueryTypes.EventDetailsResponse> {
   return apiGet<QueryTypes.EventDetailsResponse, QueryTypes.EventDetailsError>({ endpoint: getEventDetailsAPIRoute(eventId) });

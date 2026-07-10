@@ -83,8 +83,24 @@ export type AdminEventsResponse = {
   events: Event[];
 };
 
-// Admin events endpoint error response
-export type AdminEventsError = {
+// Admin members endpoint successful response
+export type AdminMembersResponse = {
+  members: Member[];
+};
+
+// Admin members endpoint error response
+export type AdminMembersError = {
+  status: number;
+  error: string;
+};
+
+// Admin images endpoint successful response
+export type AdminImagesResponse = {
+  images: Image[];
+};
+
+// Admin images endpoint error response
+export type AdminImagesError = {
   status: number;
   error: string;
 };
