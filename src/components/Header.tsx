@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import headerLogo from "../assets/header-logo.svg";
 import { routes, headerRoutes } from "../routes/routePaths";
 
+const MARK_COLOR_SCROLL_THRESHOLD_PX = 20;
+
 export default function Header() {
   const navigate = useNavigate();
+  const [isMarkColorBlack, setIsMarkColorBlack] = useState(false);
+
+  useEffect(() => {
+    const updateMarkColor = () => {
+      setIsMarkColorBlack(window.scrollY >= MARK_COLOR_SCROLL_THRESHOLD_PX);
+    };
+
+    updateMarkColor();
+    window.addEventListener("scroll", updateMarkColor, { passive: true });
+    return () => window.removeEventListener("scroll", updateMarkColor);
+  }, []);
 
   return (
     <header className="z-200 w-full h-[130px] fixed top-0 left-0 flex flex-row items-start justify-between overflow-hidden ">
@@ -11,7 +25,9 @@ export default function Header() {
       <img 
         src={headerLogo} 
         alt="Thread logo" 
-        className="z-20 w-max h-auto object-contain object-center px-5 py-4.5 cursor-pointer"
+        className={`z-20 w-max h-auto object-contain object-center px-5 py-4.5 cursor-pointer hover:opacity-70 transition duration-300 ease-in-out ${
+          isMarkColorBlack ? "brightness-0 mix-blend-exclusion" : "brightness-100 mix-blend-normal"
+        }`}
         onClick={() => navigate(routes.root)}
       />
 
