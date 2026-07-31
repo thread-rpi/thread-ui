@@ -4,16 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetPastEvents } from "../api/queries";
 import Loader from "../components/Loader";
 import { routes } from "../routes/routePaths";
-import type { EventType } from "../types/eventTypes";
+import { eventTypeIconMap, type EventType } from "../types/eventTypes";
 import { formatDate } from "../utils/formatter";
 
 const EVENT_IMAGE_COMPRESSION_SUFFIX = "og.jpg";
-
-const iconTypes: Record<EventType, string> = {
-  shoot: "mage:camera-fill",
-  internal: "material-symbols:event",
-  external: "uil:globe",
-};
 
 export default function EventDetails() {
   const navigate = useNavigate();
@@ -71,7 +65,7 @@ export default function EventDetails() {
           <div className="absolute left-5 right-5 bottom-5 md:left-8 md:right-8 md:bottom-8 text-white">
             <div className="flex items-start gap-2 md:gap-3">
               <Icon
-                icon={iconTypes[selectedEvent.type.toLowerCase() as EventType]}
+                icon={eventTypeIconMap[selectedEvent.type.toLowerCase() as EventType]}
                 className="text-3xl md:text-5xl shrink-0"
               />
               <div className="min-w-0">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { EventType, PastEvent, PastEventCardSize } from "../types/eventTypes";
+import { eventTypeIconMap, type EventType, type PastEvent, type PastEventCardSize } from "../types/eventTypes";
 import { Icon } from "@iconify/react";
 import { useViewport } from "../contexts/useViewport";
 import { Link } from "react-router-dom";
@@ -8,12 +8,6 @@ import { formatDate } from "../utils/formatter";
 
 // const PAST_EVENT_IMAGE_COMPRESSION_SUFFIX = "lg.avif";
 const PAST_EVENT_IMAGE_COMPRESSION_SUFFIX = "og.jpg";
-
-const iconTypes: Record<EventType, string> = {
-  shoot: "mage:camera-fill",
-  internal: "material-symbols:event",
-  external: "uil:globe",
-};
 
 const cardStyleBySize: Record<
   PastEventCardSize,
@@ -108,7 +102,7 @@ export const PastEventCard = ({
           transition-all ${showHovered ? "opacity-100 translate-y-0 duration-300 delay-0" : "opacity-0 translate-y-2 pointer-events-none duration-200 delay-80"}`}
         >
           <div className={`flex flex-row justify-start items-start gap-2 text-white ${cardStyle.iconClass}`}>
-            <Icon icon={iconTypes[type.toLowerCase() as EventType]} inline={true} />
+            <Icon icon={eventTypeIconMap[type.toLowerCase() as EventType]} inline={true} />
             <div className="flex flex-col justify-center items-start gap-0 overflow-clip text-white">
               <h3 className={`w-full font-bold truncate ${cardStyle.titleClass}`}>{title}</h3>
               <p className={`${cardStyle.dateLocationClass} text-[10px] opacity-45 font-weight-100 mt-[-0.15rem] truncate`}>

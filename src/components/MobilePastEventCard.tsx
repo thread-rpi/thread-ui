@@ -1,4 +1,4 @@
-import type { EventType, PastEvent } from "../types/eventTypes";
+import { eventTypeIconMap, type EventType, type PastEvent } from "../types/eventTypes";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import { getEventDetailsPageRoute } from "../routes/routePaths";
@@ -6,12 +6,6 @@ import { formatDate } from "../utils/formatter";
 
 // const PAST_EVENT_IMAGE_COMPRESSION_SUFFIX = "md.avif";
 const MOBILE_PAST_EVENT_IMAGE_COMPRESSION_SUFFIX = "og.jpg";
-
-const iconTypes: Record<EventType, string> = {
-  shoot: "mage:camera-fill",
-  internal: "material-symbols:event",
-  external: "uil:globe",
-};
 
 type MobilePastEventCardProps = PastEvent;
 export const MobilePastEventCard = ({
@@ -46,7 +40,7 @@ export const MobilePastEventCard = ({
         />
         <div className={`absolute inset-x-0 bottom-0 z-10 px-6 pb-3 sm:px-12 sm:pb-5`}>
           <div className={`flex flex-row justify-start items-start gap-2 text-white text-2xl sm:text-3xl`}>
-            <Icon icon={iconTypes[type.toLowerCase() as EventType]} inline={true} />
+            <Icon icon={eventTypeIconMap[type.toLowerCase() as EventType]} inline={true} />
             <div className="flex flex-col justify-center items-start gap-0 overflow-clip text-white">
               <h3 className={`w-full font-bold text-sm sm:text-xl truncate`}>{title}</h3>
               {isPlaceholder && (

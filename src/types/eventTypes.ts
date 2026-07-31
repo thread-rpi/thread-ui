@@ -36,3 +36,9 @@ export type PastEvent = Pick<Event, "id" | "title" | "date" | "type" | "location
 export type OverviewEvent = Pick<Event, "id" | "title" | "date" | "type">
 
 export type PastEventCardSize = "full" | "half" | "third" | "twoThird";
+
+export const eventTypeIconMap: Record<EventType, string> = {
+  shoot: "mage:camera-fill",
+  internal: "material-symbols:event",
+  external: "uil:globe",
+};

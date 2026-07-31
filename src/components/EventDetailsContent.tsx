@@ -1,8 +1,8 @@
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useGetMemberIdNamePairs } from "../api/queries";
-import { getMemberDetailsPageRoute } from "../routes/routePaths";
-import type { EventType } from "../types/eventTypes";
+// import { getMemberDetailsPageRoute } from "../routes/routePaths";
+import { eventTypeIconMap } from "../types/eventTypes";
 import type { MemberIdNamePair } from "../types/memberTypes";
 import { formatDate } from "../utils/formatter";
 import type { Event } from "../types/eventTypes";
@@ -14,12 +14,6 @@ interface EventDetailsContentProps {
   onToggleExpanded: () => void;
 }
 
-const iconTypes: Record<EventType, string> = {
-  shoot: "mage:camera-fill",
-  internal: "material-symbols:event",
-  external: "uil:globe",
-};
-
 function renderNames(pairs: MemberIdNamePair[]) {
   if (pairs.length === 0) {
     return <p className="text-sm md:text-lg lg:text-xl font-bold leading-[1.2] text-white/45">-</p>;
@@ -28,9 +22,12 @@ function renderNames(pairs: MemberIdNamePair[]) {
   return (
     <div className="flex flex-wrap gap-x-[14px] gap-y-[10px]">
       {pairs.map((pair) => (
-        <Link to={getMemberDetailsPageRoute(pair.id)} key={pair.id} className="transition-all duration-250 ease-in-out hover:text-thread-red">
+        // <Link to={getMemberDetailsPageRoute(pair.id)} key={pair.id} className="transition-all duration-250 ease-in-out hover:text-thread-red">
+        //   <p className="text-sm md:text-lg lg:text-2xl font-bold leading-[1.2]">{pair.name}</p>
+        // </Link>
+        <a key={pair.id} className="transition-all duration-250 ease-in-out hover:text-thread-red">
           <p className="text-sm md:text-lg lg:text-2xl font-bold leading-[1.2]">{pair.name}</p>
-        </Link>
+        </a>
       ))}
     </div>
   );
@@ -64,7 +61,7 @@ export default function EventDetailsContent({
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <div className="flex items-center gap-2 text-2xl md:text-4xl lg:text-5xl leading-none font-black">
-            <Icon icon={iconTypes[content?.type ?? "shoot"]} inline={true} />
+            <Icon icon={eventTypeIconMap[content?.type ?? "shoot"]} inline={true} />
             <h1 className="truncate">{content?.title ?? ""}</h1>
           </div>
           <div
