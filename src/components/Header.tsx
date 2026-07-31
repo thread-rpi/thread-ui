@@ -26,7 +26,9 @@ export default function Header() {
         src={headerLogo} 
         alt="Thread logo" 
         className={`z-20 w-max h-auto object-contain object-center px-5 py-4.5 cursor-pointer hover:opacity-70 transition duration-300 ease-in-out ${
-          isMarkColorBlack ? "brightness-0 mix-blend-exclusion" : "brightness-100 mix-blend-normal"
+          // wont work for event details page, blocking for now
+          // isMarkColorBlack ? "brightness-0 mix-blend-exclusion" : "brightness-100 mix-blend-normal"
+          "brightness-100 mix-blend-normal"
         }`}
         onClick={() => navigate(routes.root)}
       />
