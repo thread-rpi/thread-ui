@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import type { Image } from "../../types/imageTypes";
 import { formatDate } from "../../utils/formatter";
 
@@ -10,8 +11,10 @@ interface AdminImageCardProps {
 export default function AdminImageCard({ image }: AdminImageCardProps) {
   const imageUrl = import.meta.env.VITE_CLOUDFRONT_HOST + image.path + ADMIN_IMAGE_COMPRESSION_SUFFIX;
 
+  const navigate = useNavigate();
+
   return (
-    <article className="outline-1 outline-black bg-white flex flex-col">
+    <article className={`outline-1 outline-black bg-white flex flex-col ${image.published ? "cursor-pointer transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg" : "cursor-not-allowed opacity-50"}`} onClick={() => navigate(`/admin/images/${image.id}`)}>
       <div className="aspect-[3/2] w-full overflow-hidden border-b border-black bg-thread-off-white">
         <img
           src={imageUrl}
