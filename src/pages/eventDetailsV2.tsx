@@ -35,7 +35,7 @@ export default function EventDetailsV2() {
     }
   }, [isEventDetailsSuccess, eventDetails]);
 
-  // Apply page-specific background while this route is mounted.
+  // Apply page-specific background while this route is mounted
   useEffect(() => {
     document.documentElement.classList.add("event-details-page");
     document.body.classList.add("event-details-page");
@@ -50,15 +50,24 @@ export default function EventDetailsV2() {
     };
   }, []);
 
-  // update the transform range based on the width of the viewport
+  // animation config - update the transform range based on the width of the viewport
   useEffect(() => {
     const updateTransformRange = () => {
       // calculate the minimum multiplier based on the width of the viewport
       // mobile = 0px
       // > mobile && <=1440px width = 0.333 scaled from 768px to 1440px
-      // > 1440px width = 0.333
+      // > 1440px width = 0.39
       const minMultiplier = isMobile ? 0 : width > 1440 ? 0.39 : (width / 1440) * 0.39;
-      setTransformRange([window.innerHeight * minMultiplier, window.innerHeight * 0.95]);
+
+      // delay animation window start by 11% of the viewport height
+      const scrollStartOffset = window.innerHeight * 0.11;
+
+      // calculate the travel distance
+      const travel = window.innerHeight * 0.95 - window.innerHeight * minMultiplier;
+
+      // calculate the start position
+      const start = window.innerHeight * minMultiplier + scrollStartOffset;
+      setTransformRange([start, start + travel]);
     };
 
     updateTransformRange();
@@ -77,6 +86,7 @@ export default function EventDetailsV2() {
   const heroBlur = useTransform(smoothScrollY, transformRange, [0, 35], { clamp: true });
   const heroOpacity = useTransform(smoothScrollY, transformRange, [1, 0.5], { clamp: true });
   const galleryTranslateY = useTransform(smoothScrollY, transformRange, [0, -window.innerHeight * 0.95], { clamp: true });
+  const galleryMarginBottom = useTransform(galleryTranslateY, (y) => y);
   const heroFilter = useMotionTemplate`blur(${heroBlur}px)`;
 
   if (isEventDetailsLoading) {
@@ -159,9 +169,10 @@ export default function EventDetailsV2() {
         </motion.div>
 
         <motion.div
-          className="relative z-20"
+          className="relative z-20 mt-5 md:mt-15"
           style={{
             y: galleryTranslateY,
+            marginBottom: galleryMarginBottom,
             willChange: "transform",
           }}
         >
