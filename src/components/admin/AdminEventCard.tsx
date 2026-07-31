@@ -2,6 +2,7 @@ import { eventTypeIconMap } from "../../types/eventTypes";
 import type { Event } from "../../types/eventTypes";
 import { formatDate } from "../../utils/formatter";
 import { useNavigate } from "react-router-dom";
+import { routes } from "../../routes/routePaths";
 import { Icon } from "@iconify/react";
 const ADMIN_EVENT_IMAGE_COMPRESSION_SUFFIX = "og.jpg";
 
@@ -16,8 +17,11 @@ export default function AdminEventCard({ event }: AdminEventCardProps) {
 
   const navigate = useNavigate();
 
-  return (
-    <article className={`outline-1 outline-black bg-white flex flex-col ${event.published ? "cursor-pointer transition-all duration-300 hover:translate-y-[-6px] hover:shadow-lg" : "cursor-not-allowed opacity-50"}`} onClick={() => navigate(`/admin/events/${event.id}`)}>
+    return (
+      <article 
+        className={`outline-1 outline-black bg-white flex flex-col cursor-pointer transition-all duration-300 hover:translate-y-[-6px] hover:shadow-lg ${event.published ? "opacity-100" : "opacity-50"}`} 
+        onClick={() => event.published && navigate(`${routes.eventDetails.replace(":eventId", event.id)}`)}
+      >
       <div className="aspect-[3/2] w-full overflow-hidden border-b border-black bg-thread-off-white">
         {imageUrl ? (
           <img src={imageUrl} alt={event.title} className="h-full w-full object-cover" />

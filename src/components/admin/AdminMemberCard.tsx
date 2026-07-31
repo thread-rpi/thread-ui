@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import type { Member } from "../../types/memberTypes";
 
 interface AdminMemberCardProps {
@@ -8,10 +8,13 @@ interface AdminMemberCardProps {
 export default function AdminMemberCard({ member }: AdminMemberCardProps) {
   const displayName = member.display_name ?? member.name;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
-    <article className={`outline-1 outline-black bg-white p-4 flex flex-col gap-3 ${member.active ? "cursor-pointer transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg" : "cursor-not-allowed opacity-50"}`} onClick={() => navigate(`/admin/members/${member.id}`)}>
+    <article 
+      className={`outline-1 outline-black bg-white p-4 flex flex-col gap-3 cursor-pointer transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg ${member.active ? "opacity-100" : "opacity-50"}`} 
+      // onClick={() => navigate(`/admin/members/${member.id}`)}
+    >
       <h3 className="text-base font-bold leading-tight truncate">{displayName}</h3>
 
       <p className="text-sm font-medium text-thread-red leading-snug truncate">{member.role}</p>
