@@ -37,7 +37,7 @@ export default function Header() {
                   href="#header-thread"
                   startOffset={item.offset}
                   onClick={() => navigate(item.path)}
-                  className="cursor-pointer"
+                  className="cursor-pointer uppercase hover:opacity-60 transition-opacity duration-200 ease-in-out"
                 >
                   {item.label.toUpperCase()}
                 </textPath>

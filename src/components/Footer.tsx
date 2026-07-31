@@ -37,7 +37,7 @@ export default function Footer() {
                   href="#footer-thread"
                   startOffset={item.offset}
                   onClick={() => window.open(item.href, '_blank')}
-                  className="cursor-pointer text-white uppercase" 
+                  className="cursor-pointer text-white uppercase hover:opacity-60 transition-opacity duration-200 ease-in-out" 
                 >
                   {/* <Icon inline={true} icon={item.icon}/> */}
                   {item.label}
