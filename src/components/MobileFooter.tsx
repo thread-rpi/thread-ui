@@ -3,7 +3,7 @@ import { footerLinks } from "../routes/routePaths";
 
 export default function MobileFooter() {
   return (
-    <footer className="z-20 w-full bg-gradient-to-b from-transparent from-0% to-white to-20% px-6 pt-16 pb-9 sm:pb-8">
+    <footer id="mobile-footer-container" className="z-20 w-full bg-gradient-to-b from-transparent from-0% to-white to-20% px-6 pt-16 pb-9 sm:pb-8">
       <div className="mx-auto flex w-full max-w-screen-sm items-center justify-between gap-4 text-thread-red">
         <span className="text-xs sm:text-lg font-bold whitespace-nowrap">
           &copy; The Thread {new Date().getFullYear()}

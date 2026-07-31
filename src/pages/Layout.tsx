@@ -14,7 +14,7 @@ export default function Layout() {
   const footer = isMobile ? <MobileFooter /> : <Footer />;
 
   return (
-    <div className="w-full min-h-dvh flex flex-col bg-white">
+    <div id="layout-container" className="w-full min-h-dvh flex flex-col bg-white">
       {header}
       <main className={`flex-1 ${isMobile ? "pt-24" : "pt-15"}`}>
         <Suspense fallback={<Loader />}>

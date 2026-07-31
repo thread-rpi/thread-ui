@@ -6,6 +6,7 @@ import { MobilePastEventCard } from "../components/MobilePastEventCard";
 import type { PastEvent } from "../types/eventTypes";
 import { RecentContentThread } from "../components/RecentContentThread";
 import Loader from "../components/Loader";
+import { formatDate } from "../utils/formatter";
 
 const MIN_PAST_EVENTS = 6;
 
@@ -13,7 +14,7 @@ const createPlaceholderEvents = (count: number, fallbackCoverPath?: string): Pas
   Array.from({ length: count }, (_, index) => ({
     id: `placeholder-${index + 1}`,
     title: "Soon...",
-    date: new Date("9999-12-31").toISOString(),
+    date: formatDate("9999-12-31"),
     location: "???",
     type: "internal",
     image_path: fallbackCoverPath ?? "",

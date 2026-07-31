@@ -26,24 +26,64 @@
       transform: translateX(-200%);
     }
   }
+
+  --animate-event-cover-pan-mobile: event-cover-pan-mobile 15s ease-in-out -7.5s infinite alternate;
+  @keyframes event-cover-pan-mobile {
+    0% {
+      transform: translateX(-51%);
+    }
+    100% {
+      transform: translateX(-2%);
+    }
+  }
+
+  --animate-event-cover-pan-tablet: event-cover-pan-tablet 15s ease-in-out -7.5s infinite alternate;
+  @keyframes event-cover-pan-tablet {
+    0% {
+      transform: translateX(-27%);
+    }
+    100% {
+      transform: translateX(-5%);
+    }
+  }
 }
 
-/* gabarito as base font globally */
+/* global base styles */
 @layer base {
   html,
   body,
   #root {
     min-height: 100%;
+    scroll-behavior: smooth;
   }
 
+  /* global html and body styles */
   html,
   body {
+    margin: 0;
     height: 100%;
+    transition: background-color 0.3s ease-in-out;
   }
 
+
+/* gabarito as base font globally */
   body {
-    margin: 0;
     font-family: "Gabarito", sans-serif;
+  }
+
+  #layout-container {
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  html.event-details-page,
+  body.event-details-page,
+  #layout-container.event-details-page,
+  #mobile-footer-container.event-details-page {
+    background-color: #141414 !important;
+  }
+
+  #mobile-footer-container.event-details-page {
+    --tw-gradient-to: #141414 !important;
   }
 }
 

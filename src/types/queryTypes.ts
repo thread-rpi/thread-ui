@@ -1,6 +1,7 @@
 import type { AdminUser } from "./adminTypes";
-import type { OverviewEvent } from "./eventTypes";
-import type { PastEvent } from "./eventTypes";
+import type { Event, OverviewEvent, PastEvent } from "./eventTypes";
+import type { Member } from "./memberTypes";
+import type { Image } from "./imageTypes";
 
 // Health endpoint successful response
 export type HealthResponse = {
@@ -73,6 +74,66 @@ export type PastEventsResponse = {
 
 // Past events endpoint error response
 export type PastEventsError = {
+  status: number;
+  error: string;
+};
+
+// Admin events endpoint successful response
+export type AdminEventsResponse = {
+  events: Event[];
+};
+
+// Admin events endpoint error response
+export type AdminEventsError = {
+  status: number;
+  error: string;
+};
+
+// Admin members endpoint successful response
+export type AdminMembersResponse = {
+  members: Member[];
+};
+
+// Admin members endpoint error response
+export type AdminMembersError = {
+  status: number;
+  error: string;
+};
+
+// Admin images endpoint successful response
+export type AdminImagesResponse = {
+  images: Image[];
+};
+
+// Admin images endpoint error response
+export type AdminImagesError = {
+  status: number;
+  error: string;
+};
+
+// Event details endpoint successful response
+export type EventDetailsResponse = Event;
+
+// Event details endpoint error response
+export type EventDetailsError = {
+  status: number;
+  error: string;
+};
+
+// Member details endpoint successful response
+export type MemberDetailsResponse = Member;
+
+// Member details endpoint error response
+export type MemberDetailsError = {
+  status: number;
+  error: string;
+};
+
+// Image details endpoint successful response
+export type ImageDetailsResponse = Image;
+
+// Image details endpoint error response
+export type ImageDetailsError = {
   status: number;
   error: string;
 };

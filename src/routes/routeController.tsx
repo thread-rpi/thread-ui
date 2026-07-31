@@ -8,6 +8,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import UnfinishedPage from "../pages/UnfinishedPage";
 
 const Home = lazy(() => import("../pages/Home"));
+const EventDetails = lazy(() => import("../pages/eventDetailsV2"));
 // const About = lazy(() => import("../pages/About"));
 // const Features = lazy(() => import("../pages/Features"));
 // const Publications = lazy(() => import("../pages/Publications"));
@@ -44,6 +45,7 @@ export default function RouteController() {
         {/* visitor routes */}
         <Route path={routes.root} element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path={routes.eventDetails} element={<EventDetails />} />
           <Route path={routes.about} element={<UnfinishedPage />} />
           <Route path={routes.features} element={<UnfinishedPage />} />
           <Route path={routes.publications} element={<UnfinishedPage />} />

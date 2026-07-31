@@ -4,12 +4,17 @@ export const routes = {
   features: '/features',
   publications: '/publications',
   calendar: '/calendar',
+  eventDetails: '/events/:eventId',
+  members: '/members/:memberId',
   health: '/health',
   login: '/login',
   adminRoot: '/admin',
   adminMembers: '/admin/members',
   adminImages: '/admin/images',
 };
+
+export const getEventDetailsPageRoute = (eventId: string): string => `/events/${eventId}`;
+export const getMemberDetailsPageRoute = (memberId: string): string => `/members/${memberId}`;
 
 export const headerRoutes = [
   { label: "About Us", path: routes.about, offset: "9%" },
