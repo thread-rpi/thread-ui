@@ -24,7 +24,7 @@ export default function EventImageGallery({ imageData, isDataReady, isImageFocus
     console.error("Error loading image details: ", isImageDetailsError ?? "Unknown error");
     return (
       <div className="w-full h-max px-4 pb-10 flex flex-col justify-center gap-4">
-        <p className="text-white text-sm md:text-xl">We could not load the images for this event. Please try again later.</p>
+        <p className="text-white text-sm md:text-xl">Images for this event coming soon. Please try again later.</p>
       </div>
     );
   }
